@@ -1,0 +1,19 @@
+{
+  "name": "dage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://LeilaCompaore@github.com/LeilaCompaore/Dage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeilaCompaore/Dage/issues"
+  },
+  "homepage": "https://github.com/LeilaCompaore/Dage#readme"
+}
