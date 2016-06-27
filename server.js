@@ -1,12 +1,34 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server();
 var Path = require('path');
-
+var $ = require('jquery');
 /**
  * Lets the server run on this Host and Port
  */
 server.connection({host:'localhost',port:8000});
 
+/**
+ * Routing Static Pages [JS, Css, Images, etc]
+ */
+server.register(require('inert'), function(err) {
+
+    if (err) {
+        throw err;
+    }
+    
+    server.route({
+        method : 'GET', 
+        path : '/semantic/semantic_out/{path*}', 
+        handler : {
+            directory : {
+                path : 'semantic/semantic_out',
+                listing : false,
+                index : true
+            }
+        }
+    });
+
+});
 
 /**
  * Register all Modules as Plugins Here
@@ -32,7 +54,8 @@ server.register(plugins, function (err) {
     server.views({
 
         engines: { html: require('handlebars') },
-        path: __dirname
+        relativeTo: __dirname,
+        path: 'app'
     });
 
     /**
@@ -40,8 +63,8 @@ server.register(plugins, function (err) {
      */
     server.route({ method: 'GET', path: '/', handler: function(request, reply) {
 
-        //reply.view('home/home', {title : 'Home'});
-        reply('welcome back winner')
+        reply.view('home/views/homepage');
+        //reply('welcome back winner')
 
     } });
 });
